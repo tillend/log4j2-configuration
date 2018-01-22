@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug" strict="true" name="XMLConfigTest"
+	schema="Log4J-V2.10.xsd">
+	<Properties>
+		<Property name="filename">target/application.log</Property>
+		<Property name="filePattern">target/%d{yyyy-MM-dd}/application-%i.log</Property>
+	</Properties>
+	<Filter type="ThresholdFilter" level="debug" />
+
+	<Appenders>
+		<!-- 类型名为RollingFile，名称为必须属性，
+			fileName为生成文件的名称（此处使用Properties中定义的变量） -->
+		<Appender type="RollingFile" name="RollingFile" fileName="${filename}" filePattern="${filePattern}">
+			<Layout type="PatternLayout" pattern="[%p] [%d{yyyy-MM-dd HH:mm:ss}][%c{10}]%m%n" />
+			<!-- 定义文件最大大小 -->
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 KB" />
+			</Policies>
+		</Appender>
+	</Appenders>
+
+	<Loggers>
+		<!-- root loggerConfig设置 -->
+		<Root level="debug">
+			<AppenderRef ref="RollingFile" />
+		</Root>
+	</Loggers>
+
+</Configuration>
