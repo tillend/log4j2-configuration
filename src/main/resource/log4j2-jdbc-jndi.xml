@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error">
+	<Appenders>
+		<JDBC name="databaseAppender" tableName="dbo.application_log">
+			<!-- 通过与DataSource绑定的JNDI名称配置JDBCAppender -->
+			<DataSource jndiName="java:/comp/env/jdbc/LoggingDataSource" />
+			<Column name="eventDate" isEventTimestamp="true" />
+			<Column name="level" pattern="%level" />
+			<Column name="logger" pattern="%logger" />
+			<Column name="message" pattern="%message" />
+			<Column name="exception" pattern="%ex{full}" />
+		</JDBC>
+	</Appenders>
+	<Loggers>
+		<Root level="warn">
+			<AppenderRef ref="databaseAppender" />
+		</Root>
+	</Loggers>
+</Configuration>

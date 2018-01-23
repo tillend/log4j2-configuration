@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error">
+	<Appenders>
+		<JDBC name="databaseAppender" tableName="log">
+			<!-- 通过与自定义的ConnectionFactory配置JDBCAppender -->
+			<ConnectionFactory class="org.test.ConnectionFactory"
+				method="getDatabaseConnection" />
+			<!-- 配置日志输出到数据库时与列相对应的值 -->
+			<!-- literal为使用此属性在此列中插入文字值，可用于在ID列
+				中插入唯一的ID，若有自增主键时，可不使用literal-->
+			<Column name="EVENT_ID" literal="'new_log'" />
+			<Column name="EVENT_DATE" isEventTimestamp="true" />
+			<Column name="LEVEL" pattern="%level" />
+			<Column name="LOGGER" pattern="%logger" />
+			<Column name="MESSAGE" pattern="%message" />
+			<Column name="THROWABLE" pattern="%ex{full}" />
+		</JDBC>
+
+	</Appenders>
+	<Loggers>
+		<Root level="debug">
+			<AppenderRef ref="databaseAppender" />
+		</Root>
+	</Loggers>
+</Configuration>
