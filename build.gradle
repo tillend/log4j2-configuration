@@ -21,6 +21,15 @@ repositories {
 dependencies {
 	implementation 'org.apache.logging.log4j:log4j-core:2.10.0'
 	
+	//implementation 'commons-dbcp:commons-dbcp:1.4'
+	
+	//mysql
+	implementation "mysql:mysql-connector-java:5.1.45"
+	implementation 'org.apache.commons:commons-dbcp2:2.1.1'
+	
+	//mail
+	implementation 'javax.mail:mail:1.4.7'
+	
 	testImplementation 'junit:junit:4.12'
 }
 
@@ -30,7 +39,7 @@ sourceSets {
             srcDirs = ['src/main/java']
         }
         resources {
-            srcDirs = ['src/main/resources']
+            srcDirs = ['src/main/resource']
         }
     }
     test {
@@ -38,7 +47,7 @@ sourceSets {
             srcDirs = ['src/test/java']
         }
         resources {
-            srcDirs = ['src/test/resources']
+            srcDirs = ['src/test/resource']
         }
     }
 }
